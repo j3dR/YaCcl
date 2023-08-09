@@ -1,6 +1,6 @@
 /*
 Debug:
-clang -g -O0 ../src/main.c -o main -Wall -Wextra
+clang -g -O0 ../src/main.c -o main -Wall -Wextra -fsanitize=address -fno-omit-frame-pointer
 
 Release:
 clang -Ofast ../src/main.c -o main -Wall -Wextra
