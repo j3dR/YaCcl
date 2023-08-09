@@ -25,7 +25,6 @@ int main() {
 	printf("%s\n", c->data_type);
 
 	container_delete(&c);
-	container_delete(&c);
 
 	return 0;
 }
