@@ -11,13 +11,20 @@ clang -Ofast ../src/main.c -o main -Wall -Wextra
 int main() {
 
 	Container* c = container_new(10, "int");
+
+	if (c == NULL) {
+
+		return 1;
+	}
 	
 	for (size_t i = 0; i < c->size; ++i) {
 
 		printf("%d\n", c->data_int[i]);
 	}
 
-	free(c);
+	printf("%s\n", c->data_type);
+
+	container_delete(c);
 
 	return 0;
 }

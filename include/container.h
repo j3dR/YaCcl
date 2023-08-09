@@ -55,3 +55,31 @@ Container* container_new(size_t size, const char* data_type) {
 	return container;
 }
 
+void container_delete(Container* container) {
+
+	if (strcmp(container->data_type, "int") == 0) {
+
+		if (container->data_int != NULL) {
+
+			free(container->data_int);
+		}
+		else {
+
+			fprintf(stderr, "%s error: container_delete: Data is already empty", LIB_NAME);
+		}
+	}
+	else if (strcmp(container->data_type, "float") == 0) {
+
+		if (container->data_float != NULL) {
+
+			free(container->data_float);
+		}
+		else {
+
+			fprintf(stderr, "%s error: container_delete: Data is already empty", LIB_NAME);
+		}
+	}
+
+	free(container);
+}
+
