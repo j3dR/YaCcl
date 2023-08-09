@@ -18,7 +18,7 @@ typedef struct Container_struct {
 
 Container* container_new(size_t size, const char* data_type) {
 
-	Container* container = malloc(size);
+	Container* container = malloc(sizeof(Container));
 	if (container == NULL) {
 
 		fprintf(stderr, "%s error: container_new: Failed to allocate memory for the container struct\n", LIB_NAME);
