@@ -19,7 +19,7 @@ int main() {
 	
 	for (size_t i = 0; i < c->size; ++i) {
 
-		printf("%d\n", c->data_int[i]);
+		printf("%d\n", c->int_data[i]);
 	}
 
 	printf("%s\n", c->data_type);

@@ -11,8 +11,8 @@ typedef struct Container_struct {
   size_t size;
   const char* data_type;
 
-  int* data_int;
-  float* data_float;
+  int* int_data;
+  float* float_data;
 
 } Container;
 
@@ -30,8 +30,8 @@ Container* container_new(size_t size, const char* data_type) {
 
 	if (strcmp(data_type, "int") == 0) {
 
-		container->data_int = calloc(size, sizeof(container->data_int));
-		if (container->data_int == NULL) {
+		container->int_data = calloc(size, sizeof(container->int_data));
+		if (container->int_data == NULL) {
 
 			fprintf(stderr, "%s error: container_new: Failed to allocate data of type integer\n", LIB_NAME);
 			return NULL;
@@ -39,8 +39,8 @@ Container* container_new(size_t size, const char* data_type) {
 	}
 	else if (strcmp(data_type, "float") == 0) {
 
-		container->data_float = calloc(size, sizeof(container->data_float));
-		if (container->data_float == NULL) {
+		container->float_data = calloc(size, sizeof(container->float_data));
+		if (container->float_data == NULL) {
 
 			fprintf(stderr, "%s error: container_new: Failed to allocate data of type float\n", LIB_NAME);
 			return NULL;
@@ -65,10 +65,10 @@ void container_delete(Container** container) {
 
 	if (strcmp((*container)->data_type, "int") == 0) {
 
-		if ((*container)->data_int != NULL) {
+		if ((*container)->int_data != NULL) {
 
-			free((*container)->data_int);
-			(*container)->data_int = NULL;
+			free((*container)->int_data);
+			(*container)->int_data = NULL;
 		}
 		else {
 
@@ -77,10 +77,10 @@ void container_delete(Container** container) {
 	}
 	else if (strcmp((*container)->data_type, "float") == 0) {
 
-		if ((*container)->data_float != NULL) {
+		if ((*container)->float_data != NULL) {
 
-			free((*container)->data_float);
-			(*container)->data_float = NULL;
+			free((*container)->float_data);
+			(*container)->float_data = NULL;
 		}
 		else {
 
