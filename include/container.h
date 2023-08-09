@@ -55,24 +55,32 @@ Container* container_new(size_t size, const char* data_type) {
 	return container;
 }
 
-void container_delete(Container* container) {
+void container_delete(Container** container) {
 
-	if (strcmp(container->data_type, "int") == 0) {
+	if (*container == NULL) {
 
-		if (container->data_int != NULL) {
+		fprintf(stderr, "%s error: container_delete: Container is already non-existent\n", LIB_NAME);
+		return;
+	}
 
-			free(container->data_int);
+	if (strcmp((*container)->data_type, "int") == 0) {
+
+		if ((*container)->data_int != NULL) {
+
+			free((*container)->data_int);
+			(*container)->data_int = NULL;
 		}
 		else {
 
 			fprintf(stderr, "%s error: container_delete: Data is already empty\n", LIB_NAME);
 		}
 	}
-	else if (strcmp(container->data_type, "float") == 0) {
+	else if (strcmp((*container)->data_type, "float") == 0) {
 
-		if (container->data_float != NULL) {
+		if ((*container)->data_float != NULL) {
 
-			free(container->data_float);
+			free((*container)->data_float);
+			(*container)->data_float = NULL;
 		}
 		else {
 
@@ -80,13 +88,7 @@ void container_delete(Container* container) {
 		}
 	}
 
-	if (container != NULL) {
-
-		free(container);
-	}
-	else {
-
-		fprintf(stderr, "%s error: container_delete: Container struct is already empty", LIB_NAME);
-	}
+	free(*container);
+	*container = NULL;
 }
 
