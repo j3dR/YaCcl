@@ -11,9 +11,7 @@ clang -Ofast ../src/main.c -o main -Wall -Wextra
 
 int main() {
 
-	Container c;
-	c.size = 10;
-	printf("%d\n", c.size);
+	
 
 	return 0;
 }

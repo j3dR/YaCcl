@@ -7,5 +7,5 @@ typedef struct Container_struct {
   int* int_data;
   float* float_data;
 
-} Container ; 
+} Container; 
 
