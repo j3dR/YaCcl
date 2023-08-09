@@ -80,6 +80,13 @@ void container_delete(Container* container) {
 		}
 	}
 
-	free(container);
+	if (container != NULL) {
+
+		free(container);
+	}
+	else {
+
+		fprintf(stderr, "%s error: container_delete: Container struct is already empty", LIB_NAME);
+	}
 }
 
