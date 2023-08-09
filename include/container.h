@@ -21,7 +21,7 @@ Container* container_new(size_t size, const char* data_type) {
 	Container* container = malloc(size);
 	if (container == NULL) {
 
-		fprintf(stderr, "%s error: container_new: Failed to allocate memory for the container struct", LIB_NAME);
+		fprintf(stderr, "%s error: container_new: Failed to allocate memory for the container struct\n", LIB_NAME);
 		return NULL;
 	}
 
@@ -33,7 +33,7 @@ Container* container_new(size_t size, const char* data_type) {
 		container->data_int = calloc(size, sizeof(container->data_int));
 		if (container->data_int == NULL) {
 
-			fprintf(stderr, "%s error: container_new: Failed to allocate data of type integer", LIB_NAME);
+			fprintf(stderr, "%s error: container_new: Failed to allocate data of type integer\n", LIB_NAME);
 			return NULL;
 		}
 	}
@@ -42,13 +42,13 @@ Container* container_new(size_t size, const char* data_type) {
 		container->data_float = calloc(size, sizeof(container->data_float));
 		if (container->data_float == NULL) {
 
-			fprintf(stderr, "%s error: container_new: Failed to allocate data of type float", LIB_NAME);
+			fprintf(stderr, "%s error: container_new: Failed to allocate data of type float\n", LIB_NAME);
 			return NULL;
 		}
 	}
 	else {
 
-		fprintf(stderr, "%s error: container_new: Data type not supported", LIB_NAME);
+		fprintf(stderr, "%s error: container_new: Data type not supported\n", LIB_NAME);
 		return NULL;
 	}
 
@@ -65,7 +65,7 @@ void container_delete(Container* container) {
 		}
 		else {
 
-			fprintf(stderr, "%s error: container_delete: Data is already empty", LIB_NAME);
+			fprintf(stderr, "%s error: container_delete: Data is already empty\n", LIB_NAME);
 		}
 	}
 	else if (strcmp(container->data_type, "float") == 0) {
@@ -76,7 +76,7 @@ void container_delete(Container* container) {
 		}
 		else {
 
-			fprintf(stderr, "%s error: container_delete: Data is already empty", LIB_NAME);
+			fprintf(stderr, "%s error: container_delete: Data is already empty\n", LIB_NAME);
 		}
 	}
 
