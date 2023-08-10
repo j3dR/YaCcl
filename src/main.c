@@ -7,16 +7,13 @@
 #include "../include/container.h"
 
 int main() {
-
 	Container* c = container_new(10, "int");
 
 	if (c == NULL) {
-
 		return 1;
 	}
 	
 	for (size_t i = 0; i < c->size; ++i) {
-
 		printf("%d\n", c->int_data[i]);
 	}
 
