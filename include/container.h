@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char* const LIB_NAME = "Container";
+const char* const LIB_NAME = "Container";  // library name
 
+// Template
 typedef struct Container_struct {
 	size_t size;
   	const char* data_type;
@@ -13,6 +14,7 @@ typedef struct Container_struct {
 	void* data;
 } Container;
 
+// Constructor
 Container* container_new(size_t size, const char* data_type) {
 	Container* container = malloc(sizeof(Container));
 	if (container == NULL) {
@@ -42,6 +44,7 @@ Container* container_new(size_t size, const char* data_type) {
 	return container;
 }
 
+// Destructor
 void container_delete(Container** container) {
 	if (*container == NULL) {
 		fprintf(stderr, "%s error: container_delete: Container is already non-existent\n", LIB_NAME);
