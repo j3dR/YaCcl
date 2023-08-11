@@ -7,19 +7,25 @@
 #include "../include/container.h"
 
 int main() {
-	Container* c = container_new(10, "int");
+	Container* container = container_new(10, "int");
 
-	if (c == NULL) {
+	if (container == NULL) {
 		return 1;
 	}
+
+	// Assign values
+	for (size_t i = 0; i < container->size; ++i) {
+		((int*)container->data)[i] = i;
+	}
 	
-	for (size_t i = 0; i < c->size; ++i) {
-		printf("%d\n", c->int_data[i]);
+	// Read values
+	for (size_t i = 0; i < container->size; ++i) {
+		printf("%d\n", ((int*)container->data)[i]);
 	}
 
-	printf("%s\n", c->data_type);
+	printf("%s\n", container->data_type);
 
-	container_delete(&c);
+	container_delete(&container);
 
 	return 0;
 }
