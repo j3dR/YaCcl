@@ -74,6 +74,11 @@ void container_assign(Container** container, void* value, size_t index) {
 		return;
 	}
 
+	if (index > (*container)->size - 1) {
+		fprintf(stderr, "%s error: container_assign: Incorrect index\n", LIB_NAME);
+		return;
+	}
+
 	if (strcmp((*container)->data_type, "int") == 0) {
 		((int*)(*container)->data)[index] = *(int*)value;
 	}
