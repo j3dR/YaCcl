@@ -62,3 +62,17 @@ void container_delete(Container** container) {
 
 // ------------------------------------------------------------------------- Setters ---------------------------------------------------------------------------------
 
+void container_assign(Container** container, void* value, size_t index) {
+	if (*container == NULL) {
+		fprintf(stderr, "%s error: container_assign: Container is non-existent\n", LIB_NAME);
+		return;
+	}
+
+	if ((*container)->data == NULL) {
+		fprintf(stderr, "%s error: container_assign: Data is empty\n", LIB_NAME);
+		return;
+	}
+
+	((int*)(*container)->data)[index] = *(int*)value;
+}
+

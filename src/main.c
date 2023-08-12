@@ -15,7 +15,7 @@ int main() {
 
 	// Assign values
 	for (size_t i = 0; i < container->size; ++i) {
-		((int*)container->data)[i] = i;
+		container_assign(&container, (int[]){69}, i);
 	}
 	
 	// Read values
