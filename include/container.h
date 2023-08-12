@@ -55,11 +55,10 @@ void container_delete(Container** container) {
 		free((*container)->data);
 		(*container)->data = NULL;
 	}
-	else {
-		fprintf(stderr, "%s error: container_delete: Data is already empty\n", LIB_NAME);
-	}
 	
 	free(*container);
 	*container = NULL;
 }
+
+// ------------------------------------------------------------------------- Setters ---------------------------------------------------------------------------------
 
