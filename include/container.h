@@ -33,6 +33,7 @@ Container* container_new(size_t size, const char* data_type) {
 	}
 	else {
 		fprintf(stderr, "%s error: container_new: Data type not supported\n", LIB_NAME);
+		puts("                                Supported data types: int, float");
 		return NULL;
 	}
 
@@ -73,6 +74,11 @@ void container_assign(Container** container, void* value, size_t index) {
 		return;
 	}
 
-	((int*)(*container)->data)[index] = *(int*)value;
+	if (strcmp((*container)->data_type, "int") == 0) {
+		((int*)(*container)->data)[index] = *(int*)value;
+	}
+	else if (strcmp((*container)->data_type, "float") == 0) {
+		((float*)(*container)->data)[index] = *(float*)value;
+	}
 }
 
