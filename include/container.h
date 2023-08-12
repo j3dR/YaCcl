@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char* const LIB_NAME = "Container";  // library name
+const char* const LIB_NAME = "container.h";  // library name
 
 // Template
 typedef struct Container_struct {
@@ -32,12 +32,14 @@ Container* container_new(size_t size, const char* data_type) {
 		container->data = calloc(size, sizeof(float));
 	}
 	else {
+		free(container);
 		fprintf(stderr, "%s error: container_new: Data type not supported\n", LIB_NAME);
-		puts("                                Supported data types: int, float");
+		puts("                                  Supported data types: int, float");
 		return NULL;
 	}
 
 	if (container->data == NULL) {
+		free(container);
 		fprintf(stderr, "%s error: container_new: Failed to allocate data\n", LIB_NAME);
 		return NULL;
 	}
