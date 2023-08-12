@@ -15,10 +15,10 @@ int main() {
 
 	// Assign values
 	for (size_t i = 0; i < container->size; ++i) {
-		container_assign(&container, (int[]){i}, i);
+		container_assign(&container, (int)i, i);
 	}
 
-	container_assign(&container, (int[]){2137}, 5);
+	container_assign(&container, 2137.4f, 5);
 	
 	// Read values
 	for (size_t i = 0; i < container->size; ++i) {

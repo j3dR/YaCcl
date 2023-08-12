@@ -63,7 +63,12 @@ void container_delete(Container** container) {
 
 // ------------------------------------------------------------------------- Setters ---------------------------------------------------------------------------------
 
-void container_assign(Container** container, void* value, size_t index) {
+#define container_assign(container, value, index) _Generic(value,                                              \
+														   int: container_assigni(container, value, index),    \
+														   float: container_assignf(container, value, index))  \
+
+// Assign int
+void container_assigni(Container** container, int value, size_t index) {
 	if (*container == NULL) {
 		fprintf(stderr, "%s error: container_assign: Container is non-existent\n", LIB_NAME);
 		return;
@@ -74,16 +79,41 @@ void container_assign(Container** container, void* value, size_t index) {
 		return;
 	}
 
+	if (strcmp((*container)->data_type, "int") != 0) {
+		fprintf(stderr, "%s error: container_assign: Incorrect value data type\n", LIB_NAME);
+		return;
+	}
+
 	if (index > (*container)->size - 1) {
 		fprintf(stderr, "%s error: container_assign: Incorrect index\n", LIB_NAME);
 		return;
 	}
 
-	if (strcmp((*container)->data_type, "int") == 0) {
-		((int*)(*container)->data)[index] = *(int*)value;
+	((int*)(*container)->data)[index] = value;
+}
+
+// Assign float
+void container_assignf(Container** container, float value, size_t index) {
+	if (*container == NULL) {
+		fprintf(stderr, "%s error: container_assign: Container is non-existent\n", LIB_NAME);
+		return;
 	}
-	else if (strcmp((*container)->data_type, "float") == 0) {
-		((float*)(*container)->data)[index] = *(float*)value;
+
+	if ((*container)->data == NULL) {
+		fprintf(stderr, "%s error: container_assign: Data is empty\n", LIB_NAME);
+		return;
 	}
+
+	if (strcmp((*container)->data_type, "float") != 0) {
+		fprintf(stderr, "%s error: container_assign: Incorrect value data type\n", LIB_NAME);
+		return;
+	}
+
+	if (index > (*container)->size - 1) {
+		fprintf(stderr, "%s error: container_assign: Incorrect index\n", LIB_NAME);
+		return;
+	}
+
+	((float*)(*container)->data)[index] = value;
 }
 
