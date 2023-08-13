@@ -119,3 +119,43 @@ void container_assignf(Container** container, float value, size_t index) {
 	((float*)(*container)->data)[index] = value;
 }
 
+// ------------------------------------------------------------------------- Getters ---------------------------------------------------------------------------------
+
+int container_geti(Container* container, size_t index) {
+	if (container == NULL) {
+		fprintf(stderr, "%s error: container_get: Container is non-existent\n", LIB_NAME);
+		return 0;
+	}
+
+	if (container->data == NULL) {
+		fprintf(stderr, "%s error: container_get: Data is empty\n", LIB_NAME);
+		return 0;
+	}
+
+	if (index > container->size - 1) {
+		fprintf(stderr, "%s error: container_get: Incorrect index\n", LIB_NAME);
+		return 0;
+	}
+
+	return ((int*)container->data)[index];
+}
+
+float container_getf(Container* container, size_t index) {
+	if (container == NULL) {
+		fprintf(stderr, "%s error: container_get: Container is non-existent\n", LIB_NAME);
+		return 0.0f;
+	}
+
+	if (container->data == NULL) {
+		fprintf(stderr, "%s error: container_get: Data is empty\n", LIB_NAME);
+		return 0.0f;
+	}
+
+	if (index > container->size - 1) {
+		fprintf(stderr, "%s error: container_get: Incorrect index\n", LIB_NAME);
+		return 0.0f;
+	}
+
+	return ((float*)container->data)[index];
+}
+

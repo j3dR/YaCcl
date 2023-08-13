@@ -18,11 +18,11 @@ int main() {
 		container_assign(&container, (int)i, i);
 	}
 
-	container_assign(&container, 2137.4f, 5);
+	container_assign(&container, 2137, 5);
 	
 	// Read values
 	for (size_t i = 0; i < container->size; ++i) {
-		printf("%d\n", ((int*)container->data)[i]);
+		printf("%d\n", container_geti(container, i));
 	}
 
 	printf("%s\n", container->data_type);
