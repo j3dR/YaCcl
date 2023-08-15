@@ -63,7 +63,7 @@ void container_delete(Container** container) {
 	*container = NULL;
 }
 
-// ------------------------------------------------------------------------- Setters ---------------------------------------------------------------------------------
+// ---------------------------------------------------------------------- Assign functions ---------------------------------------------------------------------------
 
 #define container_assign(container, value, index) _Generic(value,                                              \
 														   int: container_assigni(container, value, index),    \
