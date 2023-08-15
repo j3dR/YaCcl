@@ -159,3 +159,39 @@ float container_getf(Container* container, size_t index) {
 	return ((float*)container->data)[index];
 }
 
+// -----------------------------------------------------------------------Append functions ---------------------------------------------------------------------------
+
+#define container_append(container, value) _Generic(value,                                       \
+													int: container_appendi(container, value),    \
+													float: container_appendf(container, value))  \
+
+void container_appendi(Container** container, int value) {
+	if (*container == NULL) {
+		fprintf(stderr, "%s error: container_append: Container is non-existent\n", LIB_NAME);
+		return;
+	}
+
+	(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(int));
+	if ((*container)->data == NULL) {
+		fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
+		return;
+	}
+
+	((int*)(*container)->data)[(*container)->size - 1] = value;
+}
+
+void container_appendf(Container** container, float value) {
+	if (*container == NULL) {
+		fprintf(stderr, "%s error: container_append: Container is non-existent\n", LIB_NAME);
+		return;
+	}
+
+	(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(float));
+	if ((*container)->data == NULL) {
+		fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
+		return;
+	}
+
+	((float*)(*container)->data)[(*container)->size - 1] = value;
+}
+

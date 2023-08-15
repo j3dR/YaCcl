@@ -27,6 +27,15 @@ int main() {
 
 	printf("%s\n", container->data_type);
 
+	puts("");
+
+	container_append(&container, 69);
+
+	// Read values
+	for (size_t i = 0; i < container->size; ++i) {
+		printf("%d\n", container_geti(container, i));
+	}
+
 	container_delete(&container);
 
 	return 0;
