@@ -1,9 +1,3 @@
-// Debug:
-// clang -g ../src/*.c -o main -Wall -Wextra -fsanitize=address -fno-omit-frame-pointer
-
-// Release:
-// clang -Ofast ../src/*.c -o main -Wall -Wextra
-
 #include "../include/container.h"
 
 int main() {
