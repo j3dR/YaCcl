@@ -63,7 +63,7 @@ void container_delete(Container** container) {
 	*container = NULL;
 }
 
-// ---------------------------------------------------------------------- Assign functions ---------------------------------------------------------------------------
+// Assign functions ---------------------------------------------------------------------------------------------------------
 
 #define container_assign(container, value, index) _Generic(value,                                              \
 														   int: container_assigni(container, value, index),    \
@@ -119,7 +119,7 @@ void container_assignf(Container** container, float value, size_t index) {
 	((float*)(*container)->data)[index] = value;
 }
 
-// ------------------------------------------------------------------------- Getters ---------------------------------------------------------------------------------
+// Getters ------------------------------------------------------------------------------------------------------------------
 
 int container_geti(Container* container, size_t index) {
 	if (container == NULL) {
@@ -159,7 +159,7 @@ float container_getf(Container* container, size_t index) {
 	return ((float*)container->data)[index];
 }
 
-// -----------------------------------------------------------------------Append functions ---------------------------------------------------------------------------
+// Append functions ---------------------------------------------------------------------------------------------------------
 
 #define container_append(container, value) _Generic(value,                                       \
 													int: container_appendi(container, value),    \
