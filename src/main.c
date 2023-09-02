@@ -1,6 +1,13 @@
 #include "../include/container.h"
 
 int main() {
+	Container* c = NULL;
+	container_append(&c, 54);
+	printf("Type: %s\n", c->data_type);
+	printf("Size: %lu\n", c->size);
+	printf("c[0] = %d\n", container_geti(c, 0));
+	return 0;
+
 	Container* container = container_new(10, "int");
 
 	if (container == NULL) {

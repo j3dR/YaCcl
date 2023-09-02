@@ -167,17 +167,34 @@ float container_getf(Container* container, size_t index) {
 
 void container_appendi(Container** container, int value) {
 	if (*container == NULL) {
-		fprintf(stderr, "%s error: container_append: Container is non-existent\n", LIB_NAME);
-		return;
-	}
+		*container = container_new(1, "int");
+		if (*container == NULL) {
+			fprintf(stderr, "%s error: container_append: Failed to initialize empty container\n", LIB_NAME);
+			return;
+		}
 
-	(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(int));
-	if ((*container)->data == NULL) {
-		fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
-		return;
+		((int*)(*container)->data)[0] = value;
 	}
+	else if ((*container)->data == NULL) {
+		(*container)->size = 1;
 
-	((int*)(*container)->data)[(*container)->size - 1] = value;
+		(*container)->data = calloc(1, sizeof(int));
+		if ((*container)->data == NULL) {
+			fprintf(stderr, "%s error: container_append: Failed to allocate data\n", LIB_NAME);
+			return;
+		}
+
+		((int*)(*container)->data)[0] = value;
+	}
+	else {
+		(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(int));
+		if ((*container)->data == NULL) {
+			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
+			return;
+		}
+
+		((int*)(*container)->data)[(*container)->size - 1] = value;
+	}
 }
 
 void container_appendf(Container** container, float value) {
