@@ -178,7 +178,7 @@ void container_appendi(Container** container, int value) {
 	else if ((*container)->data == NULL) {
 		(*container)->size = 1;
 
-		(*container)->data = calloc(1, sizeof(int));
+		(*container)->data = malloc(sizeof(int));
 		if ((*container)->data == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to allocate data\n", LIB_NAME);
 			return;
@@ -210,7 +210,7 @@ void container_appendf(Container** container, float value) {
 	else if ((*container)->data == NULL) {
 		(*container)->size = 1;
 
-		(*container)->data = calloc(1, sizeof(float));
+		(*container)->data = malloc(sizeof(float));
 		if ((*container)->data == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to allocate data\n", LIB_NAME);
 			return;
