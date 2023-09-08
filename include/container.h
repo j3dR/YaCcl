@@ -63,6 +63,24 @@ void container_delete(Container** container) {
 	*container = NULL;
 }
 
+// Clear all data
+void container_clear(Container** container) {
+	if (*container == NULL) {
+		fprintf(stderr, "%s error: container_clear: Container is non-existent\n", LIB_NAME);
+		return;
+	}
+
+	if ((*container)->data == NULL) {
+		fprintf(stderr, "%s error: container_clear: Data is already empty\n", LIB_NAME);
+		return;
+	}
+
+	free((*container)->data);
+	(*container)->data = NULL;
+
+	(*container)->size = 0;
+}
+
 // Assign functions ---------------------------------------------------------------------------------------------------------
 
 #define container_assign(container_reference, value, size_t_index) _Generic(value,                                              \

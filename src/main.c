@@ -5,9 +5,29 @@ int main() {
 	container_append(&c, 54);
 	printf("Type: %s\n", c->data_type);
 	printf("Size: %lu\n", c->size);
-	printf("c[0] = %d\n", container_geti(c, 0));
+	printf("c[0] = %d\n\n", container_geti(c, 0));
+
+	for (int i = 0; i < 10; ++i) {
+		container_append(&c, i);
+	}
+
+	for (size_t i = 0; i < c->size; ++i) {
+		printf("%d\n", container_geti(c, i));
+	}
+	printf("Size: %lu\n\n", c->size);
+
+	container_clear(&c);
+
+	for (size_t i = 0; i < c->size; ++i) {
+		printf("%d\n", container_geti(c, i));
+	}
+	printf("Type: %s\n", c->data_type);
+	printf("Size: %lu\n", c->size);
+
+	container_delete(&c);
 	return 0;
 
+	/*
 	Container* container = container_new(10, "int");
 
 	if (container == NULL) {
@@ -40,5 +60,6 @@ int main() {
 	container_delete(&container);
 
 	return 0;
+	*/
 }
 
