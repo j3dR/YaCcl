@@ -247,3 +247,56 @@ void container_appendf(Container** container, float value) {
 	}
 }
 
+// Remove element at given index
+void container_remove(Container** container, size_t index) {
+	if (*container == NULL) {
+		fprintf(stderr, "%s error: container_remove: Container is non-existent\n", LIB_NAME);
+		return;
+	}
+
+	if ((*container)->data == NULL) {
+		fprintf(stderr, "%s error: container_remove: Data is empty\n", LIB_NAME);
+		return;
+	}
+
+	if (index > (*container)->size - 1) {
+		fprintf(stderr, "%s error: container_remove: Incorrect index\n", LIB_NAME);
+		return;
+	}
+
+	size_t data_size;
+	if (strcmp((*container)->data_type, "int") != 0) {
+		data_size = sizeof(int);
+
+		if (index == (size_t)0) {
+			for (size_t i = 0; i < (*container)->size - 1; ++i) {
+				((int*)(*container)->data)[i] = ((int*)(*container)->data)[i + 1];
+			}
+		}
+		else if (index < (*container)->size - 1) {
+			for (size_t i = index; i < (*container)->size - 1; ++i) {
+				((int*)(*container)->data)[i] = ((int*)(*container)->data)[i + 1];
+			}
+		}
+	}
+	else if (strcmp((*container)->data_type, "float") != 0) {
+		data_size = sizeof(float);
+
+		if (index == (size_t)0) {
+			for (size_t i = 0; i < (*container)->size - 1; ++i) {
+				((float*)(*container)->data)[i] = ((float*)(*container)->data)[i + 1];
+			}
+		}
+		else if (index < (*container)->size - 1) {
+			for (size_t i = index; i < (*container)->size - 1; ++i) {
+				((float*)(*container)->data)[i] = ((float*)(*container)->data)[i + 1];
+			}
+		}
+	}
+
+	(*container)->data = realloc((*container)->data, --(*container)->size * data_size);
+	if ((*container)->data == NULL) {
+		fprintf(stderr, "%s error: container_remove: Failed to reallocate memory\n", LIB_NAME);
+		return;
+	}
+}

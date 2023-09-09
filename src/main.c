@@ -16,13 +16,12 @@ int main() {
 	}
 	printf("Size: %lu\n\n", c->size);
 
-	container_clear(&c);
+	container_remove(&c, 9);
 
 	for (size_t i = 0; i < c->size; ++i) {
 		printf("%d\n", container_geti(c, i));
 	}
-	printf("Type: %s\n", c->data_type);
-	printf("Size: %lu\n", c->size);
+	printf("Size: %lu\n\n", c->size);
 
 	container_delete(&c);
 	return 0;
