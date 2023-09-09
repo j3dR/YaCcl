@@ -6,16 +6,21 @@
 
 const char* const LIB_NAME = "container.h";  // library name
 
+enum Container_data_type {
+	INT,
+	FLOAT
+};
+
 // Template
 typedef struct Container_struct {
 	size_t size;
-  	const char* data_type;
+  	enum Container_data_type data_type;
 
 	void* data;
 } Container;
 
 // Constructor
-Container* container_new(size_t size, const char* data_type) {
+Container* container_new(size_t size, enum Container_data_type data_type) {
 	Container* container = malloc(sizeof(Container));
 	if (container == NULL) {
 		fprintf(stderr, "%s error: container_new: Failed to allocate memory for the container struct\n", LIB_NAME);
@@ -25,17 +30,19 @@ Container* container_new(size_t size, const char* data_type) {
 	container->size = size;
 	container->data_type = data_type;
 
-	if (strcmp(data_type, "int") == 0) {
-		container->data = calloc(size, sizeof(int));	
-	}
-	else if (strcmp(data_type, "float") == 0) {
-		container->data = calloc(size, sizeof(float));
-	}
-	else {
-		free(container);
-		fprintf(stderr, "%s error: container_new: Data type not supported\n", LIB_NAME);
-		puts("                                  Supported data types: int, float");
-		return NULL;
+	switch (data_type) {
+		case INT:
+			container->data = calloc(size, sizeof(int));
+			break;
+		case FLOAT:
+			container->data = calloc(size, sizeof(float));
+			break;
+		default:
+			free(container);
+			fprintf(stderr, "%s error: container_new: Data type not supported\n", LIB_NAME);
+			puts("                                  Supported data types: int, float");
+			return NULL;
+			break;
 	}
 
 	if (container->data == NULL) {
@@ -99,7 +106,7 @@ void container_assigni(Container** container, int value, size_t index) {
 		return;
 	}
 
-	if (strcmp((*container)->data_type, "int") != 0) {
+	if ((*container)->data_type != INT) {
 		fprintf(stderr, "%s error: container_assign: Incorrect value data type\n", LIB_NAME);
 		return;
 	}
@@ -124,7 +131,7 @@ void container_assignf(Container** container, float value, size_t index) {
 		return;
 	}
 
-	if (strcmp((*container)->data_type, "float") != 0) {
+	if ((*container)->data_type != FLOAT) {
 		fprintf(stderr, "%s error: container_assign: Incorrect value data type\n", LIB_NAME);
 		return;
 	}
@@ -185,7 +192,7 @@ float container_getf(Container* container, size_t index) {
 
 void container_appendi(Container** container, int value) {
 	if (*container == NULL) {
-		*container = container_new(1, "int");
+		*container = container_new(1, INT);
 		if (*container == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to initialize empty container\n", LIB_NAME);
 			return;
@@ -217,7 +224,7 @@ void container_appendi(Container** container, int value) {
 
 void container_appendf(Container** container, float value) {
 	if (*container == NULL) {
-		*container = container_new(1, "float");
+		*container = container_new(1, FLOAT);
 		if (*container == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to initialize empty container\n", LIB_NAME);
 			return;
@@ -265,33 +272,35 @@ void container_remove(Container** container, size_t index) {
 	}
 
 	size_t data_size;
-	if (strcmp((*container)->data_type, "int") != 0) {
-		data_size = sizeof(int);
+	switch ((*container)->data_type) {
+		case INT:
+			data_size = sizeof(int);
 
-		if (index == (size_t)0) {
-			for (size_t i = 0; i < (*container)->size - 1; ++i) {
-				((int*)(*container)->data)[i] = ((int*)(*container)->data)[i + 1];
+			if (index == (size_t)0) {
+				for (size_t i = 0; i < (*container)->size - 1; ++i) {
+					((int*)(*container)->data)[i] = ((int*)(*container)->data)[i + 1];
+				}
 			}
-		}
-		else if (index < (*container)->size - 1) {
-			for (size_t i = index; i < (*container)->size - 1; ++i) {
-				((int*)(*container)->data)[i] = ((int*)(*container)->data)[i + 1];
+			else if (index < (*container)->size - 1) {
+				for (size_t i = index; i < (*container)->size - 1; ++i) {
+					((int*)(*container)->data)[i] = ((int*)(*container)->data)[i + 1];
+				}
 			}
-		}
-	}
-	else if (strcmp((*container)->data_type, "float") != 0) {
-		data_size = sizeof(float);
+			break;
+		case FLOAT:
+			data_size = sizeof(float);
 
-		if (index == (size_t)0) {
-			for (size_t i = 0; i < (*container)->size - 1; ++i) {
-				((float*)(*container)->data)[i] = ((float*)(*container)->data)[i + 1];
+			if (index == (size_t)0) {
+				for (size_t i = 0; i < (*container)->size - 1; ++i) {
+					((float*)(*container)->data)[i] = ((float*)(*container)->data)[i + 1];
+				}
 			}
-		}
-		else if (index < (*container)->size - 1) {
-			for (size_t i = index; i < (*container)->size - 1; ++i) {
-				((float*)(*container)->data)[i] = ((float*)(*container)->data)[i + 1];
+			else if (index < (*container)->size - 1) {
+				for (size_t i = index; i < (*container)->size - 1; ++i) {
+					((float*)(*container)->data)[i] = ((float*)(*container)->data)[i + 1];
+				}
 			}
-		}
+			break;
 	}
 
 	(*container)->data = realloc((*container)->data, --(*container)->size * data_size);

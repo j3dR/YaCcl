@@ -3,7 +3,7 @@
 int main() {
 	Container* c = NULL;
 	container_append(&c, 54);
-	printf("Type: %s\n", c->data_type);
+	printf("Type: %u\n", c->data_type);
 	printf("Size: %lu\n", c->size);
 	printf("c[0] = %d\n\n", container_geti(c, 0));
 
@@ -27,7 +27,7 @@ int main() {
 	return 0;
 
 	/*
-	Container* container = container_new(10, "int");
+	Container* container = container_new(10, INT);
 
 	if (container == NULL) {
 		return 1;
