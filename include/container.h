@@ -6,21 +6,21 @@
 
 const char* const LIB_NAME = "container.h";  // library name
 
-enum Container_data_type {
+enum ContainerDataType {
 	INT,
 	FLOAT
 };
 
 // Template
-typedef struct Container_struct {
+typedef struct ContainerStruct {
 	size_t size;
-  	enum Container_data_type data_type;
+  	enum ContainerDataType data_type;
 
 	void* data;
 } Container;
 
 // Constructor
-Container* container_new(size_t size, enum Container_data_type data_type) {
+Container* container_new(size_t size, enum ContainerDataType data_type) {
 	Container* container = malloc(sizeof(Container));
 	if (container == NULL) {
 		fprintf(stderr, "%s error: container_new: Failed to allocate memory for the container struct\n", LIB_NAME);
