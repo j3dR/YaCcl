@@ -396,17 +396,17 @@ void container_assignd(Container** container, double value, size_t index) {
 char container_getc(Container* container, size_t index) {
 	if (container == NULL) {
 		fprintf(stderr, "%s error: container_geti: Container is non-existent\n", LIB_NAME);
-		return 0;
+		return 1;
 	}
 
 	if (container->data == NULL) {
 		fprintf(stderr, "%s error: container_geti: Data is empty\n", LIB_NAME);
-		return 0;
+		return 2;
 	}
 
 	if (index > container->size - 1) {
 		fprintf(stderr, "%s error: container_geti: Incorrect index\n", LIB_NAME);
-		return 0;
+		return 3;
 	}
 
 	return ((char*)container->data)[index];
@@ -415,17 +415,17 @@ char container_getc(Container* container, size_t index) {
 short container_gets(Container* container, size_t index) {
 	if (container == NULL) {
 		fprintf(stderr, "%s error: container_geti: Container is non-existent\n", LIB_NAME);
-		return 0;
+		return 1;
 	}
 
 	if (container->data == NULL) {
 		fprintf(stderr, "%s error: container_geti: Data is empty\n", LIB_NAME);
-		return 0;
+		return 2;
 	}
 
 	if (index > container->size - 1) {
 		fprintf(stderr, "%s error: container_geti: Incorrect index\n", LIB_NAME);
-		return 0;
+		return 3;
 	}
 
 	return ((short*)container->data)[index];
@@ -434,17 +434,17 @@ short container_gets(Container* container, size_t index) {
 int container_geti(Container* container, size_t index) {
 	if (container == NULL) {
 		fprintf(stderr, "%s error: container_geti: Container is non-existent\n", LIB_NAME);
-		return 0;
+		return 1;
 	}
 
 	if (container->data == NULL) {
 		fprintf(stderr, "%s error: container_geti: Data is empty\n", LIB_NAME);
-		return 0;
+		return 2;
 	}
 
 	if (index > container->size - 1) {
 		fprintf(stderr, "%s error: container_geti: Incorrect index\n", LIB_NAME);
-		return 0;
+		return 3;
 	}
 
 	return ((int*)container->data)[index];
@@ -453,17 +453,17 @@ int container_geti(Container* container, size_t index) {
 long container_getl(Container* container, size_t index) {
 	if (container == NULL) {
 		fprintf(stderr, "%s error: container_geti: Container is non-existent\n", LIB_NAME);
-		return 0;
+		return 1;
 	}
 
 	if (container->data == NULL) {
 		fprintf(stderr, "%s error: container_geti: Data is empty\n", LIB_NAME);
-		return 0;
+		return 2;
 	}
 
 	if (index > container->size - 1) {
 		fprintf(stderr, "%s error: container_geti: Incorrect index\n", LIB_NAME);
-		return 0;
+		return 3;
 	}
 
 	return ((long*)container->data)[index];
@@ -472,17 +472,17 @@ long container_getl(Container* container, size_t index) {
 float container_getf(Container* container, size_t index) {
 	if (container == NULL) {
 		fprintf(stderr, "%s error: container_getf: Container is non-existent\n", LIB_NAME);
-		return 0.0f;
+		return 1;
 	}
 
 	if (container->data == NULL) {
 		fprintf(stderr, "%s error: container_getf: Data is empty\n", LIB_NAME);
-		return 0.0f;
+		return 2;
 	}
 
 	if (index > container->size - 1) {
 		fprintf(stderr, "%s error: container_getf: Incorrect index\n", LIB_NAME);
-		return 0.0f;
+		return 3;
 	}
 
 	return ((float*)container->data)[index];
@@ -491,17 +491,17 @@ float container_getf(Container* container, size_t index) {
 double container_getd(Container* container, size_t index) {
 	if (container == NULL) {
 		fprintf(stderr, "%s error: container_geti: Container is non-existent\n", LIB_NAME);
-		return 0;
+		return 1;
 	}
 
 	if (container->data == NULL) {
 		fprintf(stderr, "%s error: container_geti: Data is empty\n", LIB_NAME);
-		return 0;
+		return 2;
 	}
 
 	if (index > container->size - 1) {
 		fprintf(stderr, "%s error: container_geti: Incorrect index\n", LIB_NAME);
-		return 0;
+		return 3;
 	}
 
 	return ((double*)container->data)[index];
