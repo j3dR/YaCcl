@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char* const LIB_NAME = "container.h";  // library name
+const char* const LIB_NAME = "yaccl.h";  // library name
 
 enum ContainerDataType {
 	CHAR,
@@ -52,12 +52,6 @@ Container* container_new(size_t size, enum ContainerDataType data_type) {
 			break;
 		case DOUBLE:
 			container->data = calloc(size, sizeof(double));
-			break;
-		default:
-			free(container);
-			fprintf(stderr, "%s error: container_new: Data type not supported\n", LIB_NAME);
-			puts("                                  Supported data types: char, short, int, long, float, double");
-			return NULL;
 			break;
 	}
 
