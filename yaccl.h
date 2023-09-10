@@ -80,7 +80,7 @@ void container_delete(Container** container) {
 	*container = NULL;
 }
 
-// Clear all data
+// Clear all the data
 void container_clear(Container** container) {
 	if (*container == NULL) {
 		fprintf(stderr, "%s error: container_clear: Container is non-existent\n", LIB_NAME);
@@ -98,7 +98,7 @@ void container_clear(Container** container) {
 	(*container)->size = 0;
 }
 
-// Remove element at given index
+// Remove an element at a given index
 void container_remove(Container** container, size_t index) {
 	if (*container == NULL) {
 		fprintf(stderr, "%s error: container_remove: Container is non-existent\n", LIB_NAME);

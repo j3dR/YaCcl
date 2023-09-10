@@ -49,7 +49,7 @@ int main() {
 
 	container_delete(&container);  // delete the container when it's no longer needed
 
-	// Getting the value at a given index ----------------------------------------------------------------------------------------
+	// Getting the value at a given index -----------------------------------------------------------------------------------------
 
 	Container* container = NULL;
 
