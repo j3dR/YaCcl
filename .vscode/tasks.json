@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "src/*.c",
+                "*.c",
                 "-o",
                 "${workspaceFolder}/bin/${workspaceFolderBasename}",
                 "-Wall",
