@@ -203,10 +203,15 @@ void container_remove(Container** container, size_t index) {
 			break;
 	}
 
-	(*container)->data = realloc((*container)->data, --(*container)->size * data_size);
+	(*container)->data = realloc((*container)->data, ((*container)->size - 1) * data_size);
 	if ((*container)->data == NULL) {
 		fprintf(stderr, "%s error: container_remove: Failed to reallocate memory\n", LIB_NAME);
 		return;
+	}
+	
+	if (--(*container)->size == 0) {
+		free((*container)->data);
+		(*container)->data = NULL;
 	}
 }
 
@@ -519,13 +524,13 @@ void container_appendc(Container** container, char value) {
 		((char*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(char));
+		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(char));
 		if ((*container)->data == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
 
-		((char*)(*container)->data)[(*container)->size - 1] = value;
+		((char*)(*container)->data)[(*container)->size] = value;
 	}
 }
 
@@ -552,13 +557,13 @@ void container_appends(Container** container, short value) {
 		((short*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(short));
+		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(short));
 		if ((*container)->data == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
 
-		((short*)(*container)->data)[(*container)->size - 1] = value;
+		((short*)(*container)->data)[(*container)->size] = value;
 	}
 }
 
@@ -585,13 +590,13 @@ void container_appendi(Container** container, int value) {
 		((int*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(int));
+		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(int));
 		if ((*container)->data == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
 
-		((int*)(*container)->data)[(*container)->size - 1] = value;
+		((int*)(*container)->data)[(*container)->size] = value;
 	}
 }
 
@@ -618,13 +623,13 @@ void container_appendl(Container** container, long value) {
 		((long*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(long));
+		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(long));
 		if ((*container)->data == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
 
-		((long*)(*container)->data)[(*container)->size - 1] = value;
+		((long*)(*container)->data)[(*container)->size] = value;
 	}
 }
 
@@ -651,13 +656,13 @@ void container_appendf(Container** container, float value) {
 		((float*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(float));
+		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(float));
 		if ((*container)->data == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
 
-		((float*)(*container)->data)[(*container)->size - 1] = value;
+		((float*)(*container)->data)[(*container)->size] = value;
 	}
 }
 
@@ -684,12 +689,12 @@ void container_appendd(Container** container, double value) {
 		((double*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ++(*container)->size * sizeof(double));
+		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(double));
 		if ((*container)->data == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
 
-		((double*)(*container)->data)[(*container)->size - 1] = value;
+		((double*)(*container)->data)[(*container)->size] = value;
 	}
 }
