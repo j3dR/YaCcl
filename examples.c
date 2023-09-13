@@ -63,22 +63,22 @@ int main() {
 	// In this case there is no universal function, all data types have corresponding getters:
 
 	// CHAR
-	container_getc(&container, 0);
+	container_getc(container, 0);
 
 	// SHORT
-	container_gets(&container, 0);
+	container_gets(container, 0);
 
 	// INT
-	container_geti(&container, 0);
+	container_geti(container, 0);
 	
 	// LONG
-	container_getl(&container, 0);
+	container_getl(container, 0);
 
 	// FLOAT
-	container_getf(&container, 0);
+	container_getf(container, 0);
 
 	// DOUBLE
-	container_getd(&container, 0);
+	container_getd(container, 0);
 
 	container_delete(&container);  // delete the container when it's no longer needed
 
