@@ -550,7 +550,7 @@ void container_appendc(Container** container, char value) {
 
 		(*container)->data = temp;
 
-		((char*)(*container)->data)[(*container)->size] = value;
+		((char*)(*container)->data)[(*container)->size++] = value;
 	}
 }
 
@@ -585,7 +585,7 @@ void container_appends(Container** container, short value) {
 
 		(*container)->data = temp;
 
-		((short*)(*container)->data)[(*container)->size] = value;
+		((short*)(*container)->data)[(*container)->size++] = value;
 	}
 }
 
@@ -620,7 +620,7 @@ void container_appendi(Container** container, int value) {
 
 		(*container)->data = temp;
 
-		((int*)(*container)->data)[(*container)->size] = value;
+		((int*)(*container)->data)[(*container)->size++] = value;
 	}
 }
 
@@ -655,7 +655,7 @@ void container_appendl(Container** container, long value) {
 
 		(*container)->data = temp;
 
-		((long*)(*container)->data)[(*container)->size] = value;
+		((long*)(*container)->data)[(*container)->size++] = value;
 	}
 }
 
@@ -690,7 +690,7 @@ void container_appendf(Container** container, float value) {
 
 		(*container)->data = temp;
 
-		((float*)(*container)->data)[(*container)->size] = value;
+		((float*)(*container)->data)[(*container)->size++] = value;
 	}
 }
 
@@ -725,6 +725,6 @@ void container_appendd(Container** container, double value) {
 
 		(*container)->data = temp;
 
-		((double*)(*container)->data)[(*container)->size] = value;
+		((double*)(*container)->data)[(*container)->size++] = value;
 	}
 }
