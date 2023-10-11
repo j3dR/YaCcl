@@ -6,7 +6,7 @@ int main() {
 
 	Container* container = container_new(10, INT);  // creates a container of size 10 with an int data type
 	                                                // the data memory is filled with zeros
-							// returns NULL when an error occures
+													// returns NULL when an error occures
 
 	container_delete(&container);  // delete the container when it's no longer needed
 

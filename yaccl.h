@@ -233,13 +233,13 @@ void container_remove(Container** container, size_t index) {
 
 // Assign functions --------------------------------------------------------------------------------------------------------------
 
-#define container_assign(container_reference, value, size_t_index) _Generic(value,                                              \
-														   char: container_assignc(container_reference, value, size_t_index),   \
-														   short: container_assigns(container_reference, value, size_t_index),  \
-														   int: container_assigni(container_reference, value, size_t_index),    \
-														   long: container_assignl(container_reference, value, size_t_index),   \
-														   float: container_assignf(container_reference, value, size_t_index),  \
-														   double: container_assignd(container_reference, value, size_t_index)) \
+#define container_assign(container_reference, value, size_t_index) _Generic(value,                                           \
+														char: container_assignc(container_reference, value, size_t_index),   \
+														short: container_assigns(container_reference, value, size_t_index),  \
+														int: container_assigni(container_reference, value, size_t_index),    \
+														long: container_assignl(container_reference, value, size_t_index),   \
+														float: container_assignf(container_reference, value, size_t_index),  \
+														double: container_assignd(container_reference, value, size_t_index)) \
 
 // Assign char
 void container_assignc(Container** container, char value, size_t index) {
@@ -509,13 +509,13 @@ double container_getd(Container* container, size_t index) {
 
 // Append functions --------------------------------------------------------------------------------------------------------------
 
-#define container_append(container_reference, value) _Generic(value,                                       \
-												    char: container_appendc(container_reference, value),   \
-													short: container_appends(container_reference, value),  \
-													int: container_appendi(container_reference, value),    \
-													long: container_appendl(container_reference, value),   \
-													float: container_appendf(container_reference, value),  \
-													double: container_appendd(container_reference, value)) \
+#define container_append(container_reference, value) _Generic(value,                                           \
+												    	char: container_appendc(container_reference, value),   \
+														short: container_appends(container_reference, value),  \
+														int: container_appendi(container_reference, value),    \
+														long: container_appendl(container_reference, value),   \
+														float: container_appendf(container_reference, value),  \
+														double: container_appendd(container_reference, value)) \
 
 // Append char
 void container_appendc(Container** container, char value) {
