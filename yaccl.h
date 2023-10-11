@@ -219,11 +219,13 @@ void container_remove(Container** container, size_t index) {
 			break;
 	}
 
-	(*container)->data = realloc((*container)->data, ((*container)->size - 1) * data_size);
-	if ((*container)->data == NULL) {
+	void* temp = realloc((*container)->data, ((*container)->size - 1) * data_size);
+	if (temp == NULL) {
 		fprintf(stderr, "%s error: container_remove: Failed to reallocate memory\n", LIB_NAME);
 		return;
 	}
+
+	(*container)->data = temp;
 	
 	if (--(*container)->size == 0) {
 		free((*container)->data);
@@ -540,11 +542,13 @@ void container_appendc(Container** container, char value) {
 		((char*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(char));
-		if ((*container)->data == NULL) {
+		void* temp = realloc((*container)->data, ((*container)->size + 1) * sizeof(char));
+		if (temp == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
+
+		(*container)->data = temp;
 
 		((char*)(*container)->data)[(*container)->size] = value;
 	}
@@ -573,11 +577,13 @@ void container_appends(Container** container, short value) {
 		((short*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(short));
-		if ((*container)->data == NULL) {
+		void* temp = realloc((*container)->data, ((*container)->size + 1) * sizeof(short));
+		if (temp == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
+
+		(*container)->data = temp;
 
 		((short*)(*container)->data)[(*container)->size] = value;
 	}
@@ -606,11 +612,13 @@ void container_appendi(Container** container, int value) {
 		((int*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(int));
-		if ((*container)->data == NULL) {
+		void* temp = realloc((*container)->data, ((*container)->size + 1) * sizeof(int));
+		if (temp == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
+
+		(*container)->data = temp;
 
 		((int*)(*container)->data)[(*container)->size] = value;
 	}
@@ -639,11 +647,13 @@ void container_appendl(Container** container, long value) {
 		((long*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(long));
-		if ((*container)->data == NULL) {
+		void* temp = realloc((*container)->data, ((*container)->size + 1) * sizeof(long));
+		if (temp == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
+
+		(*container)->data = temp;
 
 		((long*)(*container)->data)[(*container)->size] = value;
 	}
@@ -672,11 +682,13 @@ void container_appendf(Container** container, float value) {
 		((float*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(float));
-		if ((*container)->data == NULL) {
+		void* temp = realloc((*container)->data, ((*container)->size + 1) * sizeof(float));
+		if (temp == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
+
+		(*container)->data = temp;
 
 		((float*)(*container)->data)[(*container)->size] = value;
 	}
@@ -705,11 +717,13 @@ void container_appendd(Container** container, double value) {
 		((double*)(*container)->data)[0] = value;
 	}
 	else {
-		(*container)->data = realloc((*container)->data, ((*container)->size + 1) * sizeof(double));
-		if ((*container)->data == NULL) {
+		void* temp = realloc((*container)->data, ((*container)->size + 1) * sizeof(double));
+		if (temp == NULL) {
 			fprintf(stderr, "%s error: container_append: Failed to reallocate memory\n", LIB_NAME);
 			return;
 		}
+
+		(*container)->data = temp;
 
 		((double*)(*container)->data)[(*container)->size] = value;
 	}
